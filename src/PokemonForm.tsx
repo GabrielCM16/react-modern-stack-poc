@@ -22,6 +22,12 @@ const pokemonSchema = z.object({
 
     hp: z
         .number()
+        .refine(
+            (value) => !isNaN(value),
+            {
+                message: 'HP precisa ser um número',
+            }
+        )
         .min(1, 'HP mínimo é 1')
         .max(999, 'HP máximo é 999')
 })
